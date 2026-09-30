@@ -17,16 +17,17 @@ pipeline {
         }
 
         stage('Build') {
-            steps {
-                bat 'python -m pip install -r requirements.txt'
-            }
-        }
+    steps {
+        bat 'C:\\Users\\akank\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m venv venv'
+        bat 'venv\\Scripts\\python.exe -m pip install -r requirements.txt'
+    }
+}
 
-        stage('Test') {
-            steps {
-                bat 'pytest'
-            }
-        }
+stage('Test') {
+    steps {
+        bat 'venv\\Scripts\\python.exe -m pytest'
+    }
+}
 
         stage('Docker Build') {
             steps {
