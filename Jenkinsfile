@@ -41,7 +41,7 @@ pipeline {
         stage('Container Verification') {
             steps {
                 bat '"%DOCKER%" run -d --name %CONTAINER_NAME% -p %HOST_PORT%:%APP_PORT% %IMAGE_NAME%:build-%BUILD_NUMBER%'
-                bat 'timeout /t 5 /nobreak >nul'
+                powershell 'Start-Sleep -Seconds 5'
                 bat 'curl.exe -f http://localhost:%HOST_PORT%/health'
             }
         }
